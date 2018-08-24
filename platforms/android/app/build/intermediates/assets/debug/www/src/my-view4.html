@@ -1,0 +1,28 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer-element.html"><link rel="import" href="../bower_components/polymerfire/firebase-query.html"><link rel="import" href="../bower_components/polymerfire/firebase-document.html"><link rel="import" href="../bower_components/google-map/google-map.html"><link rel="import" href="shared-styles.html"><link rel="import" href="my-auth.html"><link rel="import" href="../bower_components/geo-location/geo-location.html"></head><body><dom-module id="my-view4"><template><style>.card{height:480px;}</style><div id="card" class="card"><firebase-auth id="auth" user="{{user}}" online="{{online}}" signed-in="{{signedIn}}"></firebase-auth><template is="dom-if" if="[[user]]"><firebase-query id="query" path="/users/[[user.uid]]/notes" data="{{notes}}"></firebase-query><geo-location id="geo" watch-pos="" latitude="{{latitude}}" longitude="{{longitude}}"></geo-location><google-map latitude="[[latitude]]" longitude="[[longitude]]" zoom="12" api-key="AIzaSyD3E1D9b-Z7ekrT3tbhl_dy8DCXuIuDDRc"><template is="dom-repeat" items="[[notes]]" as="note"><google-map-marker latitude="[[note.lat]]" longitude="[[note.lon]]" title="[[note.content]]" draggable="false"></google-map-marker></template></google-map></template></div></template><script>class MyView4 extends Polymer.Element {
+  static get is() {
+    return 'my-view4';
+  }
+
+  static get properies() {
+    return {
+      customProperty: {
+        type: Object
+      },
+      latitude: {
+        type: String,
+        notify: true
+      },
+      longitude: {
+        type: String,
+        notify: true
+      }
+    };
+  }
+
+  customMethod() {// this.$.
+    // this.
+  }
+
+}
+
+window.customElements.define(MyView4.is, MyView4);</script></dom-module></body></html>

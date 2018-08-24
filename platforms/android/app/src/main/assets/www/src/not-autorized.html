@@ -1,0 +1,20 @@
+<html><head><link rel="import" href="../bower_components/iron-icon/iron-icon.html"><link rel="import" href="../bower_components/iron-icons/iron-icons.html"><link rel="import" href="../bower_components/iron-icons/social-icons.html"><link rel="import" href="shared-styles.html"></head><body><dom-module id="not-authorized"><template><style>.sentiment{--iron-icon-fill-color:#ccc;width:40px;height:40px;margin-top:-6px;}.link{font-weight:bold;text-decoration:none;}.center{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}.center > div{width:315px;max-width:100%;height:100%;text-align:center;}</style><div class="center flex-container"><div><div class="flex-item"><iron-icon class="sentiment" icon="social:sentiment-dissatisfied"></iron-icon>К сожалению, вы не авторизованы</div><br><div class="flex-item"><a id="link" class="link" href="[[rootPath]]"><iron-icon class="sentiment" icon="social:person"></iron-icon>Авторизоваться</a></div></div></div></template><script>class NotAuthorized extends Polymer.Element {
+  static get is() {
+    return 'not-authorized';
+  }
+
+  static get properies() {
+    return {
+      customProperty: {
+        type: Object
+      }
+    };
+  }
+
+  customMethod() {// this.$.
+    // this.
+  }
+
+}
+
+window.customElements.define(NotAuthorized.is, NotAuthorized);</script></dom-module></body></html>

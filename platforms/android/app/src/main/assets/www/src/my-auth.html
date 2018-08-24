@@ -1,0 +1,50 @@
+<html><head><link rel="import" href="../bower_components/polymerfire/firebase-auth.html"><link rel="import" href="../bower_components/paper-button/paper-button.html"></head><body><dom-module id="my-auth"><template><firebase-auth id="auth" user="{{user}}" status-known="{{statusKnown}}" provider="google" signed-in="{{signedIn}}"></firebase-auth><template is="dom-if" if="[[user]]"><h1>Welcome [[user.displayName]]</h1></template><paper-button raised="" on-tap="login" hidden$="[[user]]">Sign In</paper-button><paper-button raised="" on-tap="logout" hidden$="[[!user]]">Sign Out</paper-button></template><script>class MyAuth extends Polymer.Element {
+  static get is() {
+    return 'my-auth';
+  }
+
+  static get properties() {
+    return {
+      user: {
+        type: Object
+      },
+      ststusKnown: {
+        type: Object
+      }
+    };
+  }
+
+  login() {
+    this.$.auth.signInAnonymously();
+  }
+
+  logout() {
+    this.$.auth.signOut();
+  }
+
+  _toString(obj) {
+    return JSON.stringify(obj);
+  }
+
+}
+
+window.customElements.define(MyAuth.is, MyAuth); // Polymer({
+//     is: "my-auth",
+//     properties: {
+//         user: {
+//             type: Object
+//         },
+//         ststusKnown: {
+//             type: Object
+//         }
+//     },
+//     login: function () {
+//         this.$.auth.signInWithPopup();
+//     },
+//     logout: function () {
+//         this.$.auth.signOut();
+//     },
+//     _toString: function(obj) {
+//         return JSON.stringify(obj);
+//     }
+// });</script></dom-module></body></html>

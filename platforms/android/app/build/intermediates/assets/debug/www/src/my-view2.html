@@ -1,0 +1,8 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer-element.html"><link rel="import" href="../bower_components/polymerfire/firebase-auth.html"><link rel="import" href="shared-styles.html"><link rel="import" href="not-autorized.html"></head><body><dom-module id="my-view2"><template><style include="shared-styles">:host{display:block;padding:10px;}.card{padding:30px 16px;}</style><firebase-auth user="{{user}}"></firebase-auth><div class="card"><template is="dom-if" if="[[user]]"><div class="circle">2</div><h1>[[customText]]</h1><p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p><p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p><paper-input always-float-label="" label="Custom text" value="{{customText}}"></paper-input><firebase-document path="/customText" data="{{customText}}"></firebase-document></template><template is="dom-if" if="[[!user]]"><not-authorized></not-authorized></template></div></template><script>class MyView2 extends Polymer.Element {
+  static get is() {
+    return 'my-view2';
+  }
+
+}
+
+window.customElements.define(MyView2.is, MyView2);</script></dom-module></body></html>

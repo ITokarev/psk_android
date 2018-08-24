@@ -1,0 +1,75 @@
+<html><head><link rel="import" href="../bower_components/polymer/polymer.html"><link rel="import" href="../bower_components/polymerfire/firebase-auth.html"><link rel="import" href="../bower_components/polymerfire/firebase-query.html"><link rel="import" href="../bower_components/paper-input/paper-input.html"><link rel="import" href="../bower_components/paper-button/paper-button.html"><link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html"><link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html"><link rel="import" href="../bower_components/iron-icons/iron-icons.html"><link rel="import" href="../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html"><link rel="import" href="../bower_components/geo-location/geo-location.html"><link rel="import" href="not-autorized.html"><link rel="import" href="my-modal.html"></head><body><dom-module id="my-view3"><template><style is="custom-style">:host{display:block;padding:10px;}.card{margin:24px;padding:30px 16px;color:#757575;border-radius:5px;background-color:#fff;box-shadow:0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}#create{width:100%;}#notes-list{list-style:none;padding:0;margin:0;}#notes-list li{@apply (--layout-horizontal);@apply (--layout-center);}#notes-list .content{@apply (--layout-flex);padding:8px;}#notes-controls{@apply (--layout-horizontal);@apply (--layout-center-justified);}</style><div id="card" class="card"><firebase-auth id="auth" user="{{user}}" online="{{online}}" signed-in="{{signedIn}}"></firebase-auth><template is="dom-if" if="[[user]]"><firebase-query id="query" path="/users/[[user.uid]]/notes" data="{{notes}}"></firebase-query><app-indexeddb-mirror key="notes" data="[[notes]]" persisted-data="{{persistedNotes}}"></app-indexeddb-mirror><div id="coords"><p>Lat: [[latitude]]</p><p>Lon: [[longitude]]</p></div><hr><div id="notes"><ul id="notes-list"><template is="dom-repeat" items="[[persistedNotes]]" as="persistedNote"><li><p class="content" note="[[persistedNote]]">[[persistedNote.content]]</p><paper-icon-button icon="create" note="[[persistedNote]]" on-click="edit"></paper-icon-button><paper-icon-button icon="delete" note="[[persistedNote]]" on-click="remove"></paper-icon-button></li></template></ul><paper-input id="input" on-keydown="_keyPress" label="Take a note..."></paper-input><div id="notes-controls"><paper-button id="add" on-click="add">Add</paper-button></div></div></template><template is="dom-if" if="[[!signedIn]]"><not-authorized></not-authorized></template></div><firebase-document path="/users/{{userId}}/notes/{{noteId}}" data="{{noteData}}"></firebase-document><geo-location id="geo" watch-pos="" latitude="{{latitude}}" longitude="{{longitude}}"></geo-location><my-modal id="my-modal" user-id="[[user.uid]]" key-item="[[keyItem]]"></my-modal></template><script>class MyView3 extends Polymer.Element {
+  static get is() {
+    return 'my-view3';
+  }
+
+  static get properties() {
+    return {
+      notes: {
+        type: Object
+      },
+      latitude: {
+        type: String,
+        notify: true
+      },
+      longitude: {
+        type: String,
+        notify: true
+      }
+    };
+  }
+
+  ready() {
+    super.ready();
+
+    document.addEventListener("deviceready", this.onDeviceReady, false);
+  }
+
+  onDeviceReady() {
+    console.log("navigator.geolocation works well");
+  }
+
+  add() {
+    var listItem = this.shadowRoot.getElementById('input').value;
+
+    if (!this.$.auth.online || listItem == '' || listItem == null) {
+      this.shadowRoot.getElementById('input').value = null;
+      return false;
+    }
+
+    this.shadowRoot.getElementById('query').ref.push({
+      content: this.shadowRoot.getElementById('input').value,
+      lat: this.shadowRoot.getElementById('geo').latitude,
+      lon: this.shadowRoot.getElementById('geo').longitude,
+      time: Date.now()
+    });
+    this.shadowRoot.getElementById('input').value = null;
+  }
+
+  edit(e) {
+    if (this.$.auth.online) {
+      this.shadowRoot.getElementById('my-modal').changeTheme('block');
+      this.shadowRoot.getElementById('my-modal').keyItem = e.currentTarget.note.$key;
+    }
+  }
+
+  remove(e) {
+    if (this.$.auth.online) {
+      var key = e.currentTarget.note.$key;
+      this.shadowRoot.getElementById('query').ref.child(key).remove();
+    }
+  }
+
+  _toString(obj) {
+    return JSON.stringify(obj);
+  }
+
+  _keyPress(e) {
+    if (e.code.toLowerCase() == 'enter') {
+      this.add();
+    }
+  }
+
+}
+
+window.customElements.define(MyView3.is, MyView3);</script></dom-module></body></html>
