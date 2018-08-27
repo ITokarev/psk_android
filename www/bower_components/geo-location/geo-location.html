@@ -134,10 +134,36 @@
       maximumAge: this.maximumAge
     };
 
+    var callbackFn = function(location) {
+      console.log('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
+
+      // Do your HTTP request here to POST location to your server.
+      // jQuery.post(url, JSON.stringify(location));
+
+      /*
+      IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+      and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+      IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+      */
+      backgroundGeolocation.finish();
+    };
+
+    var failureFn = function(error) {
+      console.log('BackgroundGeolocation error');
+    };
+
+    backgroundGeolocation.configure(callbackFn, failureFn, {
+      desiredAccuracy: 10,
+      stationaryRadius: 20,
+      distanceFilter: 30,
+      interval: 5000,
+      debug: true
+    });
+
     if (this.watchPos) {
-      this._watch = navigator.geolocation.watchPosition(success, error, options);
+      this._watch = backgroundGeolocation.start();
     } else {
-      navigator.geolocation.getCurrentPosition(success, error, options);
+      backgroundGeolocation.start();
     }
   },
 
