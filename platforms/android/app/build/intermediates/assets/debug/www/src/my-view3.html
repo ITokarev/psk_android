@@ -22,14 +22,11 @@
   ready() {
     super.ready();
 
-    console.log(this.shadowRoot.getElementById('geo').latitude);
-    console.log(this.shadowRoot.getElementById('geo').longitude);
-
     document.addEventListener("deviceready", this.onDeviceReady, false);
   }
 
   onDeviceReady() {
-    console.log("navigator.geolocation works well");
+    console.log("OnDeviceReady works well");
   }
 
   add() {

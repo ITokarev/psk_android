@@ -4,20 +4,54 @@
             "outputFile": "E:\\projects\\psk_android\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "E:\\projects\\psk_android\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\93cbee96d143ad05a0cb1cdef873149c\\res\\values\\values.xml",
                     "from": {
-                        "startLines": "4,2,3",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "162,55,103",
-                        "endColumns": "63,47,58",
-                        "endOffsets": "221,98,157"
+                        "startLines": "4,7",
+                        "startColumns": "0,0",
+                        "startOffsets": "274,437",
+                        "endColumns": "63,166",
+                        "endOffsets": "337,603"
                     },
                     "to": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,119,167",
-                        "endColumns": "63,47,58",
-                        "endOffsets": "114,162,221"
+                        "startLines": "33,46",
+                        "startColumns": "4,4",
+                        "startOffsets": "1499,2850",
+                        "endColumns": "67,166",
+                        "endOffsets": "1562,3012"
+                    }
+                },
+                {
+                    "source": "E:\\projects\\psk_android\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "5,6,4,2,7,3",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "226,284,162,55,357,103",
+                        "endColumns": "57,72,63,47,69,58",
+                        "endOffsets": "279,352,221,98,422,157"
+                    },
+                    "to": {
+                        "startLines": "34,35,36,37,56,57",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "1567,1625,1698,1762,4143,4213",
+                        "endColumns": "57,72,63,47,69,58",
+                        "endOffsets": "1620,1693,1757,1805,4208,4267"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\64f986b266c7438179ddc30feec73d88\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "215,301,377,463,549,625,702,778,951,1052,1233,1354,1457,1637,1756,1868,1967,2155,2256,2437,2558,2733,2877,2936,2994",
+                        "endColumns": "85,75,85,85,75,76,75,75,100,180,120,102,179,118,111,98,187,100,180,120,174,143,58,57,74",
+                        "endOffsets": "300,376,462,548,624,701,777,853,1051,1232,1353,1456,1636,1755,1867,1966,2154,2255,2436,2557,2732,2876,2935,2993,3068"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,38,39,40,41,42,43,44,45,47,48,49,50,51,52,53,54,55",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,195,275,365,455,535,616,696,1810,1915,2096,2221,2328,2508,2631,2747,3017,3205,3310,3491,3616,3791,3939,4002,4064",
+                        "endColumns": "89,79,89,89,79,80,79,79,104,180,124,106,179,122,115,102,187,104,180,124,174,147,62,61,78",
+                        "endOffsets": "190,270,360,450,530,611,691,771,1910,2091,2216,2323,2503,2626,2742,2845,3200,3305,3486,3611,3786,3934,3997,4059,4138"
                     }
                 }
             ]
